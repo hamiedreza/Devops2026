@@ -1,0 +1,23 @@
+
+services:
+  dind:
+    image: docker:dind
+    container_name: dind
+
+    privileged: true
+
+    restart: unless-stopped
+
+    environment:
+      DOCKER_TLS_CERTDIR: /certs
+
+    volumes:
+      - dind-data:/var/lib/docker
+      - dind-certs-ca:/certs/ca
+      - dind-certs-client:/certs/client
+
+volumes:
+  dind-data:
+  dind-certs-ca:
+  dind-certs-client:
+
